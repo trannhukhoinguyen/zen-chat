@@ -1,16 +1,16 @@
 import type { APIRoute } from 'astro';
-import OpenAI from 'openai';
+import Groq from 'groq-sdk';
 
-const openai = new OpenAI({
-  apiKey: import.meta.env.OPENAI_API_KEY,
+const groq = new Groq({
+  apiKey: import.meta.env.GROQ_API_KEY,
 });
 
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
 
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
+    const completion = await groq.chat.completions.create({
+      model: 'llama3-8b-8192',
       messages: body.messages,
       temperature: 0.7,
       max_tokens: 500,
@@ -28,6 +28,7 @@ export const POST: APIRoute = async ({ request }) => {
       }
     );
   } catch (error) {
+    console.error(error); 
     return new Response(
       JSON.stringify({
         error: 'Failed to generate response',
