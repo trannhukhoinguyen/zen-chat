@@ -15,7 +15,6 @@ type ChatHistory = {
 // Customize these placeholder messages for the input field
 const PLACEHOLDER_MESSAGES = [
   'Type your question...',
-  'How old are you?',
   'What are your skills?',
   'Where are you located?',
   'What projects have you worked on?',
@@ -92,23 +91,23 @@ Q: "Where do you live?"
 A: "I live in ${userConfig.location}"
 
 Q: "What's your background?"
-A: "I'm a ${userConfig.role} with experience in React, Next.js, and Node.js"
+A: "I'm a ${userConfig.role} with a focus for ${userConfig.roleFocus}"
 
 Q: "How old are you?"
-A: "I'm 34 years old"
+A: "I'm ${userConfig.age} years old"
 
 Core details about me:
-- I'm 34 years old
+- I'm ${userConfig.age} years old
 - I live in ${userConfig.location}
 - I'm a ${userConfig.role}
 - My email is ${userConfig.contact.email}
-- I was born in 1991
 - I was born in ${userConfig.location}
 
 My technical expertise:
 - Full Stack Development
 - React, Express, Node, Astro, JavaScript, TypeScript
 - Node.js/Express
+- .NET, C#, Entity Framework, SQL Server, Bootstrap, jQuery
 
 Response rules:
 1. ALWAYS use first-person (I, me, my)
@@ -193,17 +192,17 @@ If a question is unrelated to my work or portfolio, say: "That's outside my area
   };
 
   return (
-    <div className='bg-black/75 w-[600px] h-[400px] rounded-lg overflow-hidden shadow-lg mx-4 sm:mx-0'>
+    <div className='bg-black/85 w-[700px] h-[500px] rounded-lg overflow-hidden shadow-lg mx-4 sm:mx-0'>
       <div className='bg-gray-800 h-6 flex items-center space-x-2 px-4'>
         <div className='w-3 h-3 rounded-full bg-red-500'></div>
         <div className='w-3 h-3 rounded-full bg-yellow-500'></div>
         <div className='w-3 h-3 rounded-full bg-green-500'></div>
-        <span className='text-sm text-gray-300 flex-grow text-center font-semibold flex items-center justify-center gap-2'>
+        <span className='text-sm text-gray-500 flex-grow text-center font-semibold flex items-center justify-center gap-2'>
           <FaRegFolderClosed size={14} className='text-gray-300' />
           {userConfig.website.replace('https://', '')} ⸺ zsh
         </span>
       </div>
-      <div className='p-4 text-gray-200 font-mono text-xs h-[calc(400px-1.5rem)] flex flex-col'>
+      <div className='p-4 text-gray-200 font-mono text-s h-[calc(500px-1.5rem)] flex flex-col'>
         <div className='flex-1 overflow-y-auto'>
           {chatHistory.messages.map((msg, index) => (
             <div key={index} className='mb-2'>

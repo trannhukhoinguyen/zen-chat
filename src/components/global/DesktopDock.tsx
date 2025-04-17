@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { BsGithub, BsSpotify, BsTerminal, BsFilePdf, BsStickyFill } from 'react-icons/bs';
-import { IoIosMail } from 'react-icons/io';
+import { useState, useEffect, useRef } from 'react';
+import { BsGithub, BsSpotify, BsTerminal, BsFilePdf, BsStickyFill, BsLinkedin, BsTwitter, BsCalendar } from 'react-icons/bs';
+import { IoIosCall, IoIosMail } from 'react-icons/io';
+import { FaLink } from 'react-icons/fa';
 import { VscVscode } from 'react-icons/vsc';
 import { RiTerminalFill } from 'react-icons/ri';
 import ResumeViewer from './ResumeViewer';
@@ -15,9 +16,11 @@ export default function DesktopDock() {
   const [showSpotify, setShowSpotify] = useState(false);
   const [showGitHub, setShowGitHub] = useState(false);
   const [showNotes, setShowNotes] = useState(false);
+  const [showLinksPopup, setShowLinksPopup] = useState(false);
+  const linksPopupRef = useRef<HTMLDivElement>(null);
 
-  const handleEmailClick = () => {
-    window.location.href = `mailto:${userConfig.contact.email}`;
+  const handleLinksClick = () => {
+    setShowLinksPopup(!showLinksPopup);
   };
 
   const handleGithubClick = () => {
@@ -60,12 +63,81 @@ export default function DesktopDock() {
     setShowNotes(false);
   };
 
+  // Close popup when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (linksPopupRef.current && !linksPopupRef.current.contains(event.target as Node)) {
+        setShowLinksPopup(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [linksPopupRef]);
+
   const Tooltip = ({ text }: { text: string }) => (
     <div className='absolute -top-14 left-1/2 -translate-x-1/2'>
       <div className='relative px-3 py-1 bg-[#1d1d1f]/80 backdrop-blur-sm text-white text-sm rounded-lg whitespace-nowrap border border-px border-gray-600'>
         {text}
         <div className='absolute left-1/2 -translate-x-1/2 -bottom-[7px] w-3 h-3 bg-[#1d1d1f]/80 backdrop-blur-sm rotate-45 border-b border-r border-gray-600' />
       </div>
+    </div>
+  );
+
+  const LinksPopup = () => (
+    <div 
+      ref={linksPopupRef}
+      className="absolute bottom-20 left-1/2 -translate-x-1/2 w-max p-3 bg-[#1d1d1f]/80 backdrop-blur-sm text-white rounded-lg border border-px border-gray-600 shadow-lg flex flex-col space-y-2"
+    >
+      <a 
+        href={`mailto:${userConfig.contact.email}`}
+        className="flex items-center gap-2 hover:text-blue-400 transition-colors"
+      >
+        <IoIosMail size={20} />
+        <span>Email Me</span>
+      </a>
+      {userConfig.social.github && (
+        <a 
+          href={userConfig.social.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 hover:text-blue-400 transition-colors"
+        >
+          <BsGithub size={20} />
+          <span>GitHub</span>
+        </a>
+      )}
+      {userConfig.social.linkedin && (
+        <a 
+          href={userConfig.social.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 hover:text-blue-400 transition-colors"
+        >
+          <BsLinkedin size={20} />
+          <span>LinkedIn</span>
+        </a>
+      )}
+      {userConfig.contact.phone && (
+        <a 
+          href={`tel:${userConfig.contact.phone}`}
+          className="flex items-center gap-2 hover:text-blue-400 transition-colors"
+        >
+          <IoIosCall size={20} />
+          <span>Call Me</span>
+        </a>
+      )}
+      {userConfig.contact.calendly && (
+        <a 
+          href={userConfig.contact.calendly}
+          target="_blank"
+          rel="noopener noreferrer"
+        > 
+          <BsCalendar size={20} />
+          <span>Book a Call</span>
+        </a>
+      )}
     </div>
   );
 
@@ -87,18 +159,21 @@ export default function DesktopDock() {
               {hoveredIcon === 'vscode' && <Tooltip text='Launch VS Code' />}
             </button>
 
-            {/* Email */}
-            <button
-              onClick={handleEmailClick}
-              onMouseEnter={() => setHoveredIcon('email')}
-              onMouseLeave={() => setHoveredIcon(null)}
-              className='relative'
-            >
-              <div className='w-14 h-14 bg-gradient-to-t from-blue-600 to-blue-400 rounded-xl flex items-center justify-center shadow-lg'>
-                <IoIosMail size={45} className='text-white' />
-              </div>
-              {hoveredIcon === 'email' && <Tooltip text='Email Me' />}
-            </button>
+            {/* Links */}
+            <div className="relative">
+              <button
+                onClick={handleLinksClick}
+                onMouseEnter={() => setHoveredIcon('links')}
+                onMouseLeave={() => setHoveredIcon(null)}
+                className='relative'
+              >
+                <div className='w-14 h-14 bg-gradient-to-t from-gray-600 to-gray-400 rounded-xl flex items-center justify-center shadow-lg'>
+                  <FaLink size={45} className='text-white' />
+                </div>
+                {hoveredIcon === 'links' && <Tooltip text='Important Links' />}
+              </button>
+              {showLinksPopup && <LinksPopup />}
+            </div>
 
             {/* Github */}
             <button
