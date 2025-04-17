@@ -1,28 +1,35 @@
 import { useState } from 'react';
-import { BsGithub, BsSpotify, BsTerminal, BsFilePdf } from 'react-icons/bs';
+import { BsGithub, BsSpotify, BsTerminal, BsFilePdf, BsStickyFill } from 'react-icons/bs';
 import { IoIosMail } from 'react-icons/io';
 import { VscVscode } from 'react-icons/vsc';
 import { RiTerminalFill } from 'react-icons/ri';
 import ResumeViewer from './ResumeViewer';
+import SpotifyPlayer from './SpotifyPlayer';
+import GitHubViewer from './GitHubViewer';
+import NotesApp from './NotesApp';
+import { userConfig } from '../../config/userConfig';
 
 export default function DesktopDock() {
   const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
   const [showResume, setShowResume] = useState(false);
+  const [showSpotify, setShowSpotify] = useState(false);
+  const [showGitHub, setShowGitHub] = useState(false);
+  const [showNotes, setShowNotes] = useState(false);
 
   const handleEmailClick = () => {
-    window.location.href = 'mailto:aabdoo2304@gmail.com';
+    window.location.href = `mailto:${userConfig.contact.email}`;
   };
 
   const handleGithubClick = () => {
-    window.open('https://github.com/aabdoo23', '_blank');
+    setShowGitHub(true);
   };
 
   const handleCalendarClick = () => {
-    window.open('https://calendly.com/', '_blank');
+    window.open(userConfig.contact.calendly, '_blank');
   };
 
   const handleSpotifyClick = () => {
-    window.open('https://open.spotify.com', '_blank');
+    setShowSpotify(true);
   };
 
   const handleVSCodeClick = () => {
@@ -33,8 +40,24 @@ export default function DesktopDock() {
     setShowResume(true);
   };
 
+  const handleNotesClick = () => {
+    setShowNotes(true);
+  };
+
   const handleCloseResume = () => {
     setShowResume(false);
+  };
+
+  const handleCloseSpotify = () => {
+    setShowSpotify(false);
+  };
+
+  const handleCloseGitHub = () => {
+    setShowGitHub(false);
+  };
+
+  const handleCloseNotes = () => {
+    setShowNotes(false);
   };
 
   const Tooltip = ({ text }: { text: string }) => (
@@ -87,7 +110,20 @@ export default function DesktopDock() {
               <div className='w-14 h-14  bg-gradient-to-t from-black to-black/60 rounded-xl flex items-center justify-center shadow-lg'>
                 <BsGithub size={45} className='text-gray-100' />
               </div>
-              {hoveredIcon === 'github' && <Tooltip text='My GitHub' />}
+              {hoveredIcon === 'github' && <Tooltip text='My Projects' />}
+            </button>
+
+            {/* Notes */}
+            <button
+              onClick={handleNotesClick}
+              onMouseEnter={() => setHoveredIcon('notes')}
+              onMouseLeave={() => setHoveredIcon(null)}
+              className='relative'
+            >
+              <div className='w-14 h-14 bg-gradient-to-t from-yellow-600 to-yellow-400 rounded-xl flex items-center justify-center shadow-lg'>
+                <BsStickyFill size={45} className='text-white' />
+              </div>
+              {hoveredIcon === 'notes' && <Tooltip text='Resume Notes' />}
             </button>
 
             {/* Resume */}
@@ -138,7 +174,7 @@ export default function DesktopDock() {
               <div className='w-14 h-14 bg-gradient-to-t from-black to-black/60 rounded-xl flex items-center justify-center shadow-lg'>
                 <BsSpotify size={45} className='text-[#1ED760]' />
               </div>
-              {hoveredIcon === 'spotify' && <Tooltip text='My Dev Playlist' />}
+              {hoveredIcon === 'spotify' && <Tooltip text={userConfig.spotify.playlistName} />}
             </button>
 
             {/* Divider */}
@@ -152,20 +188,23 @@ export default function DesktopDock() {
               onMouseLeave={() => setHoveredIcon(null)}
               className='relative'
             >
-              <div className='w-14 h-14 rounded-2xl overflow-hidden shadow-lg'>
-                <div className='absolute inset-0 bg-gradient-to-b from-gray-300 to-gray-500 rounded-xl'></div>
-                <div className='absolute inset-[2px] rounded-xl bg-black'>
-                  <div className='absolute top-1 left-2'>
-                    <RiTerminalFill size={20} className='text-white' />
-                  </div>
-                </div>
+              <div className='w-14 h-14 bg-gradient-to-t from-black to-black/60 rounded-xl flex items-center justify-center shadow-lg'>
+                <RiTerminalFill size={45} className='text-green-500' />
               </div>
               {hoveredIcon === 'terminal' && <Tooltip text='Terminal' />}
             </button>
           </div>
         </div>
       </div>
+
       <ResumeViewer isOpen={showResume} onClose={handleCloseResume} />
+      <SpotifyPlayer 
+        isOpen={showSpotify} 
+        onClose={handleCloseSpotify} 
+        playlistId={userConfig.spotify.playlistId}
+      />
+      <GitHubViewer isOpen={showGitHub} onClose={handleCloseGitHub} />
+      <NotesApp isOpen={showNotes} onClose={handleCloseNotes} />
     </>
   );
 }

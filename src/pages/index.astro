@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import LandingPage from '../components/LandingPage.astro';
+import { userConfig } from '../config/userConfig';
 ---
 
 <!-- 
@@ -11,15 +12,14 @@ import LandingPage from '../components/LandingPage.astro';
   - openGraph: Social media sharing metadata
 -->
 <Layout
-  title='Abdelrahman Saleh - Software Developer'
-  description='Software Developer based in Egypt specializing in React, Node.js, and modern web technologies'
-  canonical='https://abdelrahmansaleh.com'
+  title={userConfig.seo.title}
+  description={userConfig.seo.description}
+  canonical={userConfig.website}
   openGraph={{
-    url: 'https://abdelrahmansaleh.com',
-    title: 'Abdelrahman Saleh - Software Developer',
-    description:
-      'Software Developer based in Egypt specializing in React, Node.js, and modern web technologies',
-    site_name: 'Abdelrahman Saleh',
+    url: userConfig.website,
+    title: userConfig.seo.title,
+    description: userConfig.seo.description,
+    site_name: userConfig.name,
   }}
 >
   <LandingPage />

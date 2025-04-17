@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { IoClose } from 'react-icons/io5';
+import { userConfig } from '../../config/userConfig';
 
 interface ResumeViewerProps {
   isOpen: boolean;
@@ -22,8 +23,6 @@ export default function ResumeViewer({ isOpen, onClose }: ResumeViewerProps) {
 
   if (!isOpen) return null;
 
-  const resumeUrl = 'https://drive.google.com/file/d/1ZyaeXLpdOtPUygFCu55yYCQSEdW3K4pm/view';
-  const resumePath = '/resume.pdf';
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
       <div className="w-[90%] h-[90%] max-w-5xl bg-gray-800 rounded-lg shadow-2xl overflow-hidden">
@@ -44,7 +43,7 @@ export default function ResumeViewer({ isOpen, onClose }: ResumeViewerProps) {
         {/* PDF Viewer */}
         <div className="h-[calc(100%-2rem)] bg-white">
           <figure className="h-full">
-            <object data={resumePath} type="application/pdf" width="100%" className="h-full"></object>
+            <object data={userConfig.resume.localPath} type="application/pdf" width="100%" className="h-full"></object>
           </figure>
         </div>
       </div>

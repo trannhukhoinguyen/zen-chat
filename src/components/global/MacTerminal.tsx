@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { FaRegFolderClosed } from 'react-icons/fa6';
+import { userConfig } from '../../config/userConfig';
 
 type Message = {
   role: 'system' | 'user' | 'assistant';
@@ -65,12 +66,12 @@ export default function MacTerminal() {
   // Customize this welcome message with your information
   const welcomeMessage = `Welcome to My Portfolio
 
-Name: John Doe
-Role: Full Stack Developer
-Location: Austin, TX
+Name: ${userConfig.name}
+Role: ${userConfig.role}
+Location: ${userConfig.location}
 
-Contact: john@johndoe.com
-GitHub: github.com/johndoe
+Contact: ${userConfig.contact.email}
+GitHub: ${userConfig.social.github}
 
 Ask me anything!
 `;
@@ -83,26 +84,26 @@ Ask me anything!
   });
 
   // Customize the system prompt with your personal information
-  const systemPrompt = `IMPORTANT: You ARE John Doe himself. You must always speak in first-person ("I", "my", "me"). Never refer to "John" in third-person.
+  const systemPrompt = `IMPORTANT: You ARE ${userConfig.name} themselves. You must always speak in first-person ("I", "my", "me"). Never refer to "${userConfig.name}" in third-person.
 CURRENT DATE: ${formattedDate} - Always use this exact date when discussing the current date/year.
 
 Example responses:
 Q: "Where do you live?"
-A: "I live in Austin, TX"
+A: "I live in ${userConfig.location}"
 
 Q: "What's your background?"
-A: "I'm a Full Stack Developer with experience in React, Next.js, and Node.js"
+A: "I'm a ${userConfig.role} with experience in React, Next.js, and Node.js"
 
 Q: "How old are you?"
 A: "I'm 34 years old"
 
 Core details about me:
 - I'm 34 years old
-- I live in Austin, TX
-- I'm a Full Stack Developer
-- My email is john@johndoe.com
+- I live in ${userConfig.location}
+- I'm a ${userConfig.role}
+- My email is ${userConfig.contact.email}
 - I was born in 1991
-- I was born in Austin, TX
+- I was born in ${userConfig.location}
 
 My technical expertise:
 - Full Stack Development
@@ -111,12 +112,12 @@ My technical expertise:
 
 Response rules:
 1. ALWAYS use first-person (I, me, my)
-2. Never say "John" or refer to myself in third-person
+2. Never say "${userConfig.name}" or refer to myself in third-person
 3. Keep responses concise and professional
 4. Use markdown formatting when appropriate
 5. Maintain a friendly, conversational tone
 
-If a question is unrelated to my work or portfolio, say: "That's outside my area of expertise. Feel free to email me at john@johndoe.com and we can discuss further!"`;
+If a question is unrelated to my work or portfolio, say: "That's outside my area of expertise. Feel free to email me at ${userConfig.contact.email} and we can discuss further!"`;
 
   useEffect(() => {
     setChatHistory((prev) => ({
@@ -182,8 +183,7 @@ If a question is unrelated to my work or portfolio, say: "That's outside my area
           ...prev.messages,
           {
             role: 'assistant',
-            content:
-              "I'm having trouble processing that. Please email me at john@johndoe.com",
+            content: `I'm having trouble processing that. Please email me at ${userConfig.contact.email}`,
           },
         ],
       }));
@@ -200,7 +200,7 @@ If a question is unrelated to my work or portfolio, say: "That's outside my area
         <div className='w-3 h-3 rounded-full bg-green-500'></div>
         <span className='text-sm text-gray-300 flex-grow text-center font-semibold flex items-center justify-center gap-2'>
           <FaRegFolderClosed size={14} className='text-gray-300' />
-          johndoe.com ⸺ zsh
+          {userConfig.website.replace('https://', '')} ⸺ zsh
         </span>
       </div>
       <div className='p-4 text-gray-200 font-mono text-xs h-[calc(400px-1.5rem)] flex flex-col'>
@@ -222,8 +222,7 @@ If a question is unrelated to my work or portfolio, say: "That's outside my area
         </div>
         <form onSubmit={handleSubmit} className='mt-2'>
           <div className='flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-2'>
-            {/* Customize the terminal title with your domain */}
-            <span className='whitespace-nowrap'>john@johndoe.com root %</span>
+            <span className='whitespace-nowrap'>{userConfig.contact.email} root %</span>
             <input
               type='text'
               value={chatHistory.input}
