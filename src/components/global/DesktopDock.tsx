@@ -154,7 +154,7 @@ const DesktopDock = ({ onTerminalClick, onNotesClick, onGitHubClick, activeApps 
               onMouseLeave={() => setHoveredIcon(null)}
               className="relative group"
             >
-              <div className={`w-12 h-12 bg-gradient-to-t from-red-600 to-red-400 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 ease-out hover:scale-110 active:scale-95 ${activeApps.resume ? 'ring-2 ring-white/50' : ''}`}>
+              <div className={`w-12 h-12 bg-gradient-to-t from-red-600 to-red-400 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 ease-out hover:scale-110 active:scale-95 ${activeApps.document ? 'ring-2 ring-white/50' : ''}`}>
                 <BsFilePdf size={35} className='text-white' />
               </div>
               {hoveredIcon === 'resume' && <Tooltip text='View Resume' />}

@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   // Replace with your website URL (required for sitemap generation)
-  site: 'https://example.com',
+  site: 'https://zen-chat.vercel.app',
 
   // URL configuration
   trailingSlash: 'never', // Removes trailing slashes from URLs

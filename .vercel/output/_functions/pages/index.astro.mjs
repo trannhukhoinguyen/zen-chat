@@ -408,7 +408,7 @@ const macBackground1 = new Proxy({"src":"/_astro/mac-background1.BN3pAP-K.jpg","
 							if (name === 'fsPath') {
 								return "C:/Users/002/source/repos/portfolio/src/assets/images/mac-background1.jpg";
 							}
-							
+
 							return target[name];
 						}
 					});
@@ -421,7 +421,7 @@ const macBackground3 = new Proxy({"src":"/_astro/mac-background3.D2uWT5Yk.jpg","
 							if (name === 'fsPath') {
 								return "C:/Users/002/source/repos/portfolio/src/assets/images/mac-background3.jpg";
 							}
-							
+
 							return target[name];
 						}
 					});
@@ -591,16 +591,16 @@ const foodies = {
 
 const userConfig = {
   // Personal Information
-  name: "Abdelrahman Saleh",
-  role: "Software Developer - Backend Developer",
-  location: "Giza, Egypt",
-  website: "aabdoo23",
-  roleFocus: "Backend Development using .NET, C#, Entity Framework, SQL Server, and Bootstrap. Can also work with Angular, React, and Node.js.",
+  name: "Patriarchal Zen",
+  role: "Software Developer",
+  location: "India, China",
+  website: "zen-chat.vercel.app",
+  roleFocus: "",
   age: 23,
   // Social Links
   social: {
-    github: "https://github.com/aabdoo23",
-    linkedin: "https://www.linkedin.com/in/aabdoo23/"
+    github: "https://github.com/trannhukhoinguyen",
+    linkedin: "https://www.linkedin.com/in/trannhukhoinguyen/"
     // Add your LinkedIn URL
   },
   // Contact Information
@@ -625,7 +625,7 @@ const userConfig = {
       degree: "Bachelor of Computer Science",
       major: "Biomedical Informatics",
       institution: "Nile University",
-      location: "Giza, Egypt",
+      location: "India, China",
       year: "2021-2025",
       description: "Relevant coursework: Data Structures, Algorithms, Database Management, Software Engineering, Biomedical Informatics, Artificial Intelligence, Machine Learning, Deep Learning, Computer Vision, Natural Language Processing, Computer Networks, Operating Systems, Computer Architecture, Computer Organization, Computer Security, Computer Graphics, Computer Systems, Computer Networks, Operating Systems, Computer Architecture, Computer Organization, Computer Security, Computer Graphics, Computer Systems",
       images: [
@@ -1072,7 +1072,7 @@ const userConfig = {
   ],
   // SEO Configuration
   seo: {
-    title: "Abdelrahman Saleh - Software Developer",
+    title: "Patriarchal Zen",
     description: "Software Developer based in Egypt specializing in React, Node.js, and modern web technologies"},
   // Theme Configuration
   theme: {
@@ -3016,7 +3016,7 @@ const macBackground2 = new Proxy({"src":"/_astro/mac-background2.DAWzICtV.jpg","
 							if (name === 'fsPath') {
 								return "C:/Users/002/source/repos/portfolio/src/assets/images/mac-background2.jpg";
 							}
-							
+
 							return target[name];
 						}
 					});

@@ -9,37 +9,38 @@ import portfolio from './projects/portfolio.json';
 import foodies from './projects/foodies.json';
 export const userConfig = {
     // Personal Information
-    name: 'Abdelrahman Saleh',
-    role: 'Software Developer - Backend Developer',
-    location: 'Giza, Egypt',
-    email: 'aabdoo2304@gmail.com',
-    website: 'aabdoo23',
-    roleFocus: 'Backend Development using .NET, C#, Entity Framework, SQL Server, and Bootstrap. Can also work with Angular, React, and Node.js.',
-    age: 23,    
+    name: 'Patriarchal Zen',
+    role: 'Patriarchal Zen',
+    location: 'India, China',
+    email: 'patriarchalzen@gmail.com',
+    website: 'zen-chat.vercel.app',
+    roleFocus: 'Patriarchal Zen',
+    age: 20000,
 
     // Social Links
     social: {
-        github: 'https://github.com/aabdoo23',
-        linkedin: 'https://www.linkedin.com/in/aabdoo23/', // Add your LinkedIn URL
+        youtube1: 'https://www.youtube.com/c/T%C3%B4ngPhongT%E1%BB%95S%C6%B0Thi%E1%BB%81n',
+        youtube2: 'https://www.youtube.com/c/T%C3%B4ngPhongT%E1%BB%95S%C6%B0Thi%E1%BB%81n',
+        youtube3: 'https://www.youtube.com/c/T%C3%B4ngPhongT%E1%BB%95S%C6%B0Thi%E1%BB%81n',
     },
 
     // Contact Information
     contact: {
-        email: 'aabdoo2304@gmail.com',
-        phone: '+201007952039', // Add your phone number
-        calendly: 'https://calendly.com/aabdoo2304', // Add your Calendly URL
+        email: 'patriarchalzen@gmail.com',
+        phone: '', // Add your phone number
+        calendly: 'https://calendly.com/patriarchalzen', // Add your Calendly URL
     },
 
     // Spotify Configuration
     spotify: {
-        playlistId: '5WsS94KKm5wDhgEpg8VcgM', // Your Spotify playlist ID
-        playlistName: 'Coding-Time',
+        playlistId: '44NzrgF4btgV5jKUgwVnmY', // Your Spotify playlist ID
+        playlistName: 'Patriarchal Zen',
     },
 
-    // Resume Configuration
-    resume: {
-        url: 'https://drive.google.com/file/d/1ZyaeXLpdOtPUygFCu55yYCQSEdW3K4pm/view',
-        localPath: '/resume.pdf',
+    // Document Configuration
+    document: {
+        url: 'https://drive.google.com/file/d/1HsbfDGYI5bJjEYsTmtuOIYb6cVrcxzzA/view',
+        localPath: '/ĐƯỜNG_LỐI_THỰC_HÀNH_THAM_TỔ_SƯ_THIỀN.pdf',
     },
 
     // Education Background
@@ -48,7 +49,7 @@ export const userConfig = {
             degree: "Bachelor of Computer Science",
             major: "Biomedical Informatics",
             institution: "Nile University",
-            location: "Giza, Egypt",
+            location: "India, China",
             year: "2021-2025",
             description: "Relevant coursework: Data Structures, Algorithms, Database Management, Software Engineering, Biomedical Informatics, Artificial Intelligence, Machine Learning, Deep Learning, Computer Vision, Natural Language Processing, Computer Networks, Operating Systems, Computer Architecture, Computer Organization, Computer Security, Computer Graphics, Computer Systems, Computer Networks, Operating Systems, Computer Architecture, Computer Organization, Computer Security, Computer Graphics, Computer Systems",
             images: [
@@ -239,7 +240,7 @@ export const userConfig = {
                     alt: "NUICPC"
                 },
                 {
-                    
+
                 }
 
             ]
@@ -447,7 +448,7 @@ export const userConfig = {
                     // description: "ECPC Certificate"
                 }
             ]
-        },   
+        },
         {
             title: "EOI",
             description: "Egyptian Olympiad in Informatics",
@@ -527,9 +528,9 @@ export const userConfig = {
 
     // SEO Configuration
     seo: {
-        title: 'Abdelrahman Saleh - Software Developer',
-        description: 'Software Developer based in Egypt specializing in React, Node.js, and modern web technologies',
-        keywords: ['Software Developer', 'React', 'Node.js', 'Web Development', 'Egypt'],
+        title: 'Patriarchal Zen',
+        description: '',
+        keywords: ['Patriarchal Zen'],
     },
 
     // Theme Configuration
@@ -550,7 +551,7 @@ export const userConfig = {
         neurospeccompanionmerged,
         clinicalmain,
         seatReservation,
-        
+
         // Add more projects here
     ]
-} as const; 
+} as const;

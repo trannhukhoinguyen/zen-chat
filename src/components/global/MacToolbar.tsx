@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { MdWifi } from 'react-icons/md';
-import { FaApple, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import {FaApple, FaGithub, FaLinkedin, FaEnvelope, FaYoutube} from 'react-icons/fa';
 import {
   IoSearchSharp,
   IoBatteryHalfOutline,
@@ -104,9 +104,9 @@ export default function MacToolbar({
   const menus: Record<string, MenuItem[]> = {
     File: [
       {
-        label: 'Resume',
+        label: 'Tài liệu',
         icon: <IoDocumentText size={16} />,
-        action: () => window.open(userConfig.resume.url, '_blank'),
+        action: () => window.open(userConfig.document.url, '_blank'),
       },
       {
         label: 'Projects',
@@ -134,19 +134,19 @@ export default function MacToolbar({
     ],
     Go: [
       {
-        label: 'GitHub',
-        icon: <FaGithub size={16} />,
-        action: () => window.open(userConfig.social.github, '_blank'),
+        label: 'Tông Phong Tổ Sư Thiền',
+        icon: <FaYoutube size={16} />,
+        action: () => window.open(userConfig.social.youtube1, '_blank'),
       },
       {
-        label: 'LinkedIn',
-        icon: <FaLinkedin size={16} />,
-        action: () => window.open(userConfig.social.linkedin, '_blank'),
+        label: 'Youtube 2',
+        icon: <FaYoutube size={16} />,
+        action: () => window.open(userConfig.social.youtube2, '_blank'),
       },
       {
-        label: 'Email',
-        icon: <FaEnvelope size={16} />,
-        action: () => window.open(`mailto:${userConfig.contact.email}`),
+        label: 'Youtube 3',
+        icon: <FaYoutube size={16} />,
+        action: () => window.open(userConfig.social.youtube3, '_blank'),
       },
     ],
     Help: [
@@ -195,8 +195,8 @@ export default function MacToolbar({
 
   return (
     <>
-      <HelpModal 
-        isOpen={showHelp} 
+      <HelpModal
+        isOpen={showHelp}
         onClose={() => setShowHelp(false)}
         onTerminalClick={onTerminalClick}
       />
@@ -215,7 +215,7 @@ export default function MacToolbar({
         <div className='flex items-center space-x-4' ref={menuRef}>
           <FaApple size={16} />
           <div className="relative">
-            <span 
+            <span
               className='font-semibold hover:text-gray-300 transition-colors cursor-pointer'
               onMouseEnter={() => setShowSignature(true)}
               onMouseLeave={() => setShowSignature(false)}
@@ -224,9 +224,9 @@ export default function MacToolbar({
             </span>
             {showSignature && (
               <div className="absolute top-full left-0 mt-1 bg-white/98 backdrop-blur-sm rounded-lg p-4 shadow-xl z-[100]">
-                  <img 
-                    src="/src/assets/images/me.svg" 
-                    alt="Signature" 
+                  <img
+                    src="/src/assets/images/me.svg"
+                    alt="Signature"
                     className="w-[100px] h-[100px]"
                   />
               </div>
@@ -234,7 +234,7 @@ export default function MacToolbar({
           </div>
           {Object.entries(menus).map(([menu, items]) => (
             <div key={menu} className="relative">
-              <span 
+              <span
                 className='cursor-pointer hover:text-gray-300 transition-colors'
                 onClick={() => handleMenuClick(menu)}
               >
