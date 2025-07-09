@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { MdWifi } from 'react-icons/md';
-import {FaApple, FaGithub, FaLinkedin, FaEnvelope, FaYoutube} from 'react-icons/fa';
+import {FaApple, FaYoutube} from 'react-icons/fa';
 import {
   IoSearchSharp,
   IoBatteryHalfOutline,
@@ -111,7 +111,7 @@ export default function MacToolbar({
       {
         label: 'Projects',
         icon: <IoCodeSlash size={16} />,
-        action: () => window.open(userConfig.social.github, '_blank'),
+        action: () => window.open(userConfig.social.youtube1, '_blank'),
       },
     ],
     Edit: [

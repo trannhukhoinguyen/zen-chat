@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { BsGithub, BsSpotify, BsFilePdf, BsStickyFill, BsLinkedin, BsCalendar } from 'react-icons/bs';
+import { BsSpotify, BsFilePdf, BsStickyFill, BsYoutube, BsCalendar } from 'react-icons/bs';
 import { IoIosCall, IoIosMail } from 'react-icons/io';
 import { FaLink, FaEnvelope } from 'react-icons/fa';
 import ResumeViewer from './ResumeViewer';
@@ -10,17 +10,18 @@ import { RiTerminalFill } from 'react-icons/ri';
 interface DesktopDockProps {
   onTerminalClick: () => void;
   onNotesClick: () => void;
-  onGitHubClick: () => void;
+  onYoutubeClick: () => void;
   activeApps: {
     terminal: boolean;
     notes: boolean;
-    github: boolean;
+    document: boolean;
+    youtube: boolean;
     resume: boolean;
     spotify: boolean;
   };
 }
 
-const DesktopDock = ({ onTerminalClick, onNotesClick, onGitHubClick, activeApps }: DesktopDockProps) => {
+const DesktopDock = ({ onTerminalClick, onNotesClick, onYoutubeClick, activeApps }: DesktopDockProps) => {
   const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
   const [showResume, setShowResume] = useState(false);
   const [showSpotify, setShowSpotify] = useState(false);
@@ -81,24 +82,24 @@ const DesktopDock = ({ onTerminalClick, onNotesClick, onGitHubClick, activeApps 
     >
       <div className="grid grid-cols-1 gap-y-2">
         <a
-          href={userConfig.social.linkedin}
+          href={userConfig.social.youtube1}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 text-gray-300 hover:text-white"
         >
-          <BsLinkedin size={20} />
-          <span>LinkedIn</span>
+          <BsYoutube size={20} />
+          <span>Youtube</span>
         </a>
-        <a
-          href={userConfig.social.github}
+{/*        <a
+          href={userConfig.social.youtube2}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 text-gray-300 hover:text-white"
         >
-          <BsGithub size={20} />
-          <span>GitHub</span>
-        </a>
-        <a
+          <BsYoutube size={20} />
+          <span>Youtube</span>
+        </a>*/}
+{/*        <a
           href={`mailto:${userConfig.contact.email}`}
           className="flex items-center gap-2 text-gray-300 hover:text-white"
         >
@@ -111,7 +112,7 @@ const DesktopDock = ({ onTerminalClick, onNotesClick, onGitHubClick, activeApps 
         >
           <IoIosCall size={20} />
           <span>Call</span>
-        </a>
+        </a>*/}
       </div>
     </div>
   );
@@ -121,17 +122,17 @@ const DesktopDock = ({ onTerminalClick, onNotesClick, onGitHubClick, activeApps 
       <div className="fixed bottom-0 left-0 right-0 hidden md:flex justify-center pb-4 z-100">
         <div className="bg-gray-600/50 backdrop-blur-sm rounded-2xl p-2 shadow-xl">
           <div className="flex space-x-2">
-            {/* GitHub */}
+            {/* Youtube */}
             <button
-              onClick={onGitHubClick}
-              onMouseEnter={() => setHoveredIcon('github')}
+              onClick={onYoutubeClick}
+              onMouseEnter={() => setHoveredIcon('youtube')}
               onMouseLeave={() => setHoveredIcon(null)}
               className="relative group"
             >
-              <div className={`w-12 h-12 bg-gradient-to-t from-black to-black/60 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 ease-out hover:scale-110 active:scale-95 ${activeApps.github ? 'ring-2 ring-white/50' : ''}`}>
-                <BsGithub size={35} className='text-gray-100' />
+              <div className={`w-12 h-12 bg-gradient-to-t from-black to-black/60 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 ease-out hover:scale-110 active:scale-95 ${activeApps.youtube ? 'ring-2 ring-white/50' : ''}`}>
+                <BsYoutube size={35} className='text-gray-100' />
               </div>
-              {hoveredIcon === 'github' && <Tooltip text='My Projects' />}
+              {hoveredIcon === 'youtube' && <Tooltip text='My Projects' />}
             </button>
 
             {/* Notes */}
@@ -187,7 +188,7 @@ const DesktopDock = ({ onTerminalClick, onNotesClick, onGitHubClick, activeApps 
             </button>
 
             {/* Email */}
-            <button
+{/*            <button
               onClick={handleEmailClick}
               onMouseEnter={() => setHoveredIcon('email')}
               onMouseLeave={() => setHoveredIcon(null)}
@@ -197,7 +198,7 @@ const DesktopDock = ({ onTerminalClick, onNotesClick, onGitHubClick, activeApps 
                 <IoIosMail size={40} className='text-white' />
               </div>
               {hoveredIcon === 'email' && <Tooltip text='Email' />}
-            </button>
+            </button>*/}
 
             {/* Links */}
             <button

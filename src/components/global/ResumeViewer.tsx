@@ -34,9 +34,9 @@ export default function ResumeViewer({ isOpen, onClose }: ResumeViewerProps) {
       className="w-[90%] h-[90%] max-w-5xl"
       initialSize={{ width: 800, height: 600 }}
     >
-      <div className="h-full bg-white">
-        <figure className="h-full">
-          <object data={userConfig.document.localPath} type="application/pdf" width="100%" className="h-full"></object>
+      <div className="h-auto bg-white">
+        <figure className="h-auto">
+          <object data={userConfig.document.localPath} type="application/pdf" width="100%" className="h-auto"></object>
         </figure>
       </div>
     </DraggableWindow>

@@ -4,7 +4,7 @@ import MacTerminal from '../components/global/MacTerminal';
 import MobileDock from '../components/global/MobileDock';
 import DesktopDock from '../components/global/DesktopDock';
 import NotesApp from '../components/global/NotesApp';
-import GitHubViewer from '../components/global/GitHubViewer';
+import YoutubeViewer from '../components/global/YoutubeViewer';
 import ResumeViewer from '../components/global/ResumeViewer';
 
 interface AppLayoutProps {
@@ -23,7 +23,7 @@ export default function Desktop({ initialBg, backgroundMap }: AppLayoutProps) {
   const [currentBg, setCurrentBg] = useState<string>(initialBg);
   const [showTerminal, setShowTerminal] = useState(false);
   const [showNotes, setShowNotes] = useState(false);
-  const [showGitHub, setShowGitHub] = useState(false);
+  const [showYoutube, setShowYoutube] = useState(false);
   const [showResume, setShowResume] = useState(false);
   const [showSpotify, setShowSpotify] = useState(false);
   const [currentTutorialStep, setCurrentTutorialStep] = useState(0);
@@ -32,7 +32,8 @@ export default function Desktop({ initialBg, backgroundMap }: AppLayoutProps) {
   const [activeApps, setActiveApps] = useState({
     terminal: false,
     notes: false,
-    github: false,
+    youtube: false,
+    document: false,
     resume: false,
     spotify: false,
   });
@@ -76,15 +77,15 @@ export default function Desktop({ initialBg, backgroundMap }: AppLayoutProps) {
       content: "This is my Notes app where you can find detailed information about my education, experience, and skills. Feel free to explore!",
       action: () => {
         setShowNotes(false);
-        setShowGitHub(true);
+        setShowYoutube(true);
       },
       buttonText: "Next: Projects"
     },
     {
-      title: "GitHub Projects",
+      title: "Youtube Projects",
       content: "Here you can browse through my projects, see their structure, and check out the code. Each project has screenshots and links to the repository.",
       action: () => {
-        setShowGitHub(false);
+        setShowYoutube(false);
         setShowTerminal(true);
       },
       buttonText: "Next: Terminal"
@@ -142,8 +143,8 @@ export default function Desktop({ initialBg, backgroundMap }: AppLayoutProps) {
       />
 
       <div className='relative z-10'>
-        <MacToolbar 
-          onTerminalClick={() => setShowTerminal(true)} 
+        <MacToolbar
+          onTerminalClick={() => setShowTerminal(true)}
           onShowTutorial={resetTutorial}
         />
       </div>
@@ -152,9 +153,9 @@ export default function Desktop({ initialBg, backgroundMap }: AppLayoutProps) {
       </div>
 
       <MobileDock
-        onGitHubClick={() => {
-          setShowGitHub(true);
-          handleAppOpen('github');
+        onYoutubeClick={() => {
+          setShowYoutube(true);
+          handleAppOpen('youtube');
         }}
         onNotesClick={() => {
           setShowNotes(true);
@@ -178,9 +179,9 @@ export default function Desktop({ initialBg, backgroundMap }: AppLayoutProps) {
           setShowNotes(true);
           handleAppOpen('notes');
         }}
-        onGitHubClick={() => {
-          setShowGitHub(true);
-          handleAppOpen('github');
+        onYoutubeClick={() => {
+          setShowYoutube(true);
+          handleAppOpen('youtube');
         }}
         activeApps={activeApps}
       />
@@ -189,8 +190,8 @@ export default function Desktop({ initialBg, backgroundMap }: AppLayoutProps) {
         setShowNotes(false);
         handleAppClose('notes');
       }} />
-      <GitHubViewer isOpen={showGitHub} onClose={() => {
-        setShowGitHub(false);
+      <YoutubeViewer isOpen={showYoutube} onClose={() => {
+        setShowYoutube(false);
         handleAppClose('github');
       }} />
       <ResumeViewer isOpen={showResume} onClose={() => {

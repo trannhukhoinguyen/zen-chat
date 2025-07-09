@@ -1,4 +1,4 @@
-import { BsGithub, BsSpotify, BsLinkedin } from 'react-icons/bs';
+import { BsGithub, BsSpotify, BsYoutube } from 'react-icons/bs';
 import { IoIosMail, IoIosCall } from 'react-icons/io';
 import { userConfig } from '../../config/userConfig';
 import { BsStickyFill } from 'react-icons/bs';
@@ -76,9 +76,9 @@ export default function MobileDock({ onGitHubClick, onNotesClick, onResumeClick,
           </div>
         </button>
 
-        <a href={userConfig.social.linkedin} className='flex flex-col items-center'>
+        <a href={userConfig.social.youtube1} className='flex flex-col items-center'>
           <div className='w-18 h-18 bg-[#0a66c2] rounded-2xl flex items-center justify-center'>
-            <BsLinkedin size={50} className='text-white' />
+            <BsYoutube size={50} className='text-white' />
           </div>
         </a>
 

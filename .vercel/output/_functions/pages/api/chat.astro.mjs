@@ -8,7 +8,7 @@ const POST = async ({ request }) => {
   try {
     const body = await request.json();
     const completion = await groq.chat.completions.create({
-      model: "llama3-8b-8192",
+      model: "gemma2-9b-it",
       messages: body.messages,
       temperature: 0.7,
       max_tokens: 500

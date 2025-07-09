@@ -10,7 +10,7 @@ export const POST: APIRoute = async ({ request }) => {
     const body = await request.json();
 
     const completion = await groq.chat.completions.create({
-      model: 'llama3-8b-8192',
+      model: 'gemma2-9b-it',
       messages: body.messages,
       temperature: 0.7,
       max_tokens: 500,
@@ -28,7 +28,7 @@ export const POST: APIRoute = async ({ request }) => {
       }
     );
   } catch (error) {
-    console.error(error); 
+    console.error(error);
     return new Response(
       JSON.stringify({
         error: 'Failed to generate response',
