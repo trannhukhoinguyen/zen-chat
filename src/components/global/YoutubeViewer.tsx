@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaGithub, FaExternalLinkAlt, FaFolder, FaFile, FaChevronLeft, FaLink } from 'react-icons/fa';
+import { FaYoutube, FaExternalLinkAlt, FaFolder, FaFile, FaChevronLeft, FaLink } from 'react-icons/fa';
 import { userConfig } from '../../config/userConfig';
 import DraggableWindow from './DraggableWindow';
 
@@ -16,12 +16,12 @@ type ProjectStructure = {
 
 type Project = typeof userConfig.projects[0];
 
-interface GitHubViewerProps {
+interface YoutubeViewerProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const GitHubViewer = ({ isOpen, onClose }: GitHubViewerProps) => {
+const YoutubeViewer = ({ isOpen, onClose }: YoutubeViewerProps) => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
   const [showStructure, setShowStructure] = useState(false);
@@ -91,7 +91,7 @@ const GitHubViewer = ({ isOpen, onClose }: GitHubViewerProps) => {
 
   const handleNextImage = () => {
     if (selectedProject) {
-      setActiveImageIndex((prevIndex) => 
+      setActiveImageIndex((prevIndex) =>
         prevIndex + 1 >= selectedProject.images.length ? 0 : prevIndex + 1
       );
     }
@@ -99,7 +99,7 @@ const GitHubViewer = ({ isOpen, onClose }: GitHubViewerProps) => {
 
   const handlePrevImage = () => {
     if (selectedProject) {
-      setActiveImageIndex((prevIndex) => 
+      setActiveImageIndex((prevIndex) =>
         prevIndex - 1 < 0 ? selectedProject.images.length - 1 : prevIndex - 1
       );
     }
@@ -109,11 +109,11 @@ const GitHubViewer = ({ isOpen, onClose }: GitHubViewerProps) => {
 
   return (
     <DraggableWindow
-      title={showStructure ? selectedProject?.title || 'GitHub Projects' : 'GitHub Projects'}
+      title={showStructure ? selectedProject?.title || 'Youtube Projects' : 'Youtube Projects'}
       onClose={onClose}
-      initialPosition={{ 
-        x: Math.floor(window.innerWidth * 0.2), 
-        y: Math.floor(window.innerHeight * 0.2) 
+      initialPosition={{
+        x: Math.floor(window.innerWidth * 0.2),
+        y: Math.floor(window.innerHeight * 0.2)
       }}
       className="w-[93vw] md:max-w-4xl max-h-[90vh] flex flex-col"
       initialSize={{ width: 800, height: 600 }}
@@ -132,9 +132,9 @@ const GitHubViewer = ({ isOpen, onClose }: GitHubViewerProps) => {
                   >
                     {project.images && project.images.length > 0 && (
                       <div className="w-full h-48 mb-3 overflow-hidden rounded-lg">
-                        <img 
-                          src={project.images[0].url} 
-                          alt={project.images[0].alt} 
+                        <img
+                          src={project.images[0].url}
+                          alt={project.images[0].alt}
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -159,7 +159,7 @@ const GitHubViewer = ({ isOpen, onClose }: GitHubViewerProps) => {
                         className="flex items-center gap-2 text-sm hover:text-blue-400 text-gray-300"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <FaGithub />
+                        <FaYoutube />
                         <span>Repository</span>
                       </a>
                       {project.liveUrl && (
@@ -188,7 +188,7 @@ const GitHubViewer = ({ isOpen, onClose }: GitHubViewerProps) => {
                 <FaChevronLeft />
                 <span>Back to Projects</span>
               </button>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-gray-800/50 rounded-lg p-4">
                   <h3 className="text-xl font-semibold mb-4 text-gray-200">Project Structure</h3>
@@ -196,26 +196,26 @@ const GitHubViewer = ({ isOpen, onClose }: GitHubViewerProps) => {
                     {selectedProject && renderProjectStructure(selectedProject.structure as unknown as ProjectStructure)}
                   </div>
                 </div>
-                
+
                 {selectedProject && selectedProject.images && selectedProject.images.length > 0 && (
                   <div className="bg-gray-800/50 rounded-lg p-4">
                     <h3 className="text-xl font-semibold mb-4 text-gray-200">Screenshots</h3>
                     <div className="relative">
                       <div className="rounded-lg overflow-hidden mb-2">
-                        <img 
-                          src={selectedProject.images[activeImageIndex].url} 
+                        <img
+                          src={selectedProject.images[activeImageIndex].url}
                           alt={selectedProject.images[activeImageIndex].alt}
-                          className="w-full object-cover" 
+                          className="w-full object-cover"
                         />
                       </div>
-                      
+
                       <div className="text-sm text-gray-300 mb-3">
                         {selectedProject.images[activeImageIndex].description}
                       </div>
-                      
+
                       {selectedProject.images.length > 1 && (
                         <div className="flex justify-between mt-2">
-                          <button 
+                          <button
                             onClick={handlePrevImage}
                             className="bg-gray-700 hover:bg-gray-600 text-white rounded-full w-8 h-8 flex items-center justify-center"
                           >
@@ -224,7 +224,7 @@ const GitHubViewer = ({ isOpen, onClose }: GitHubViewerProps) => {
                           <span className="text-gray-400">
                             {activeImageIndex + 1} / {selectedProject.images.length}
                           </span>
-                          <button 
+                          <button
                             onClick={handleNextImage}
                             className="bg-gray-700 hover:bg-gray-600 text-white rounded-full w-8 h-8 flex items-center justify-center"
                           >
@@ -241,8 +241,8 @@ const GitHubViewer = ({ isOpen, onClose }: GitHubViewerProps) => {
                           rel="noopener noreferrer"
                           className="flex items-center gap-2 text-sm hover:text-blue-400 text-gray-300 bg-gray-700/50 p-2 rounded-lg"
                         >
-                          <FaGithub />
-                          <span>Visit GitHub Repository</span>
+                          <FaYoutube />
+                          <span>Visit Youtube Repository</span>
                         </a>
                       </div>
                     )}
@@ -270,4 +270,4 @@ const GitHubViewer = ({ isOpen, onClose }: GitHubViewerProps) => {
   );
 };
 
-export default GitHubViewer; 
+export default YoutubeViewer;
